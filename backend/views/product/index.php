@@ -26,13 +26,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'id',
             [
-                    'attribute' => 'Image',
+                    'attribute' => 'id',
+                    'contentOptions' => [
+                            'style' => 'width: 60px'
+                    ]
+            ],
+            [
+                    'label' => 'Image',
+                    'attribute' => 'image',
                     'content' => function($model) {
                         /** @var \common\models\Product $model */
                         return Html::img($model->getImageUrl(), ['style' => 'width:50px']);
-                    }
+                    },
+                    'contentOptions' => [
+                        'style' => 'width: 90px'
+                    ]
             ],
 	        'name',
             'price:currency',
@@ -43,10 +52,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::tag('span',$model->status ? 'Active' : 'Draft', [
                                 'class' => $model->status ? 'badge badge-success' : 'badge badge-danger'
                         ]);
-                    }
+                    },
+                    'contentOptions' => [
+                        'style' => 'width: 90px'
+                    ]
             ],
-            'created_at:datetime',
-            'updated_at:datetime',
+            [
+                    'attribute' => 'created_at',
+                    'format' => ['datetime'],
+                    'contentOptions' => ['style' => 'white-space: nowrap']
+            ],
+	        [
+		        'attribute' => 'updated_at',
+		        'format' => ['datetime'],
+		        'contentOptions' => ['style' => 'white-space: nowrap']
+	        ],
             //'created_by',
             //'updated_by',
             [
