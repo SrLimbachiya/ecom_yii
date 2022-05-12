@@ -22,7 +22,7 @@ use frontend\models\ContactForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends \frontend\base\Controller
 {
     /**
      * {@inheritdoc}
@@ -81,7 +81,7 @@ class SiteController extends Controller
 				$dataProvider = new ActiveDataProvider([
 					'query' => Product::find()->published(),
 					'pagination' => [
-						'pageSize' => 2
+						'pageSize' => 3
 					]
 				]);
         return $this->render('index', [

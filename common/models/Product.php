@@ -21,7 +21,6 @@ use yii\web\UploadedFile;
  * @property int|null $updated_at
  * @property int|null $created_by
  * @property int|null $updated_by
- *
  * @property CartItems[] $cartItems
  * @property User $createdBy
  * @property OrderItems[] $orderItems
@@ -162,10 +161,14 @@ class Product extends \yii\db\ActiveRecord
 		}
 
 		public function getImageUrl() {
-			if ($this->image) {
-				return Yii::$app->params['frontendUrl'].'/storage'.$this->image;
+			return self::formatImageUrl($this->image);
+		}
+
+		public static function formatImageUrl($imagePath) {
+			if ($imagePath) {
+				return Yii::$app->params['frontendUrl'].'/storage'.$imagePath;
 			}
-			return Yii::$app->params['frontendUrl'].'/img/no_img.svg'; // image update not working!!
+			return Yii::$app->params['frontendUrl'].'/img/no_img.png'; // image update not working!!
 		}
 
 		public function getShortDescription() {
